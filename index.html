@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ItsLuis | Plugin Developer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div id="cursor-spotlight" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <header class="nav" id="nav" role="banner">
+    <div class="nav-left">
+      <img src="assets/logo.png" class="nav-logo" alt="Luis Picture">
+      <h3 class="logo-text">ItsLuis</h3>
+    </div>
+
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#vouches">Vouches</a>
+    </nav>
+
+    <button id="hamburger" class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div id="navMenu" class="nav-menu" role="menu" aria-hidden="true">
+      <a role="menuitem" href="#about">About</a>
+      <a role="menuitem" href="#experience">Experience</a>
+      <a role="menuitem" href="#projects">Projects</a>
+      <a role="menuitem" href="#vouches">Vouches</a>
+      <a role="menuitem" href="#contact" class="nav-menu-contact">Contact</a>
+    </div>
+
+    <a href="#contact" class="nav-right" id="contactCTA" role="button">
+      <svg class="contact-cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M2 4v16h20V4H2zm18 2v1.5L12 13 4 7.5V6h16zM4 18V9.7l8 5 8-5V18H4z"/>
+      </svg>
+      <span class="contact-text">Contact Me</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="title">Hi, I'm <span class="highlight">Luis</span></h1>
+      <p class="subtitle">Minecraft Developer • Java • Skript</p>
+    </section>
+
+    <section id="about" class="section fade">
+      <div class="titles"><h1>ABOUT ME</h1></div>
+
+      <div class="section-text about-grid">
+        <div class="about-item">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00ff85" d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+          <p>I'm <span class="highlight">Luis (ItsLuis0916)</span>, a 14-year-old Minecraft developer specializing in <span class="highlight">CPvP Style Servers</span>.</p>
+        </div>
+
+        <div class="about-item">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00ff85" d="M12 2L1 21h22L12 2zm0 4.8l7.5 13H4.5L12 6.8z"/></svg>
+          <p>Developing since <span class="highlight">2024</span> — I started with <span class="highlight">Skript</span> and moved over to <span class="highlight">Java</span>.</p>
+        </div>
+
+        <div class="about-item">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00ff85" d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm-4 6h2v-2H3v2zm4 0h14v-2H7v2zm-4-12h2V5H3v2zm4 0h14V5H7v2z"/></svg>
+          <p>I specialize in <span class="highlight">clean code</span>, unique systems, and <span class="highlight">lag-free</span> performance.</p>
+        </div>
+
+        <div class="about-item">
+          <svg class="icon" viewBox="0 -960 960 960" aria-hidden="true"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>
+          <p>Experienced with both <span class="highlight">small</span> and <span class="highlight">larger</span> servers in the CPvP community.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section fade" aria-label="Experience">
+      <div class="titles"><h1>EXPERIENCE</h1></div>
+
+      <div class="carousel-container" aria-roledescription="carousel">
+        <button class="carousel-btn prev" aria-label="Previous slide">&#10094;</button>
+
+        <div class="carousel-track" role="list">
+          <div class="carousel-slide" role="listitem">
+            <div class="exp-card" tabindex="0">
+              <h3>PracHub</h3>
+              <p class="meta"><span class="role-icon" aria-hidden="true">🔧</span> Developer — <span class="small">~50 players</span></p>
+            </div> 
+          </div>
+
+          <div class="carousel-slide" role="listitem">
+            <div class="exp-card" tabindex="0">
+              <h3>CompVanilla</h3>
+              <p class="meta"><span class="role-icon" aria-hidden="true">🔧</span> Developer — <span class="small">~40 players</span></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" role="listitem">
+            <div class="exp-card" tabindex="0">
+              <h3>SausageSMP</h3>
+              <p class="meta"><span class="role-icon" aria-hidden="true">🔧</span> Developer — <span class="small">~50–70 players</span></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" role="listitem">
+            <div class="exp-card" tabindex="0">
+              <h3>FearMc</h3>
+              <p class="meta"><span class="role-icon" aria-hidden="true">⚡</span> Manager — <span class="small">~70 players</span></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" role="listitem">
+            <div class="exp-card" tabindex="0">
+              <h3>SoftVanilla</h3>
+              <p class="meta"><span class="role-icon" aria-hidden="true">🔧</span> Developer — <span class="small">~35 players</span></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" role="listitem">
+            <div class="exp-card" tabindex="0">
+              <h3>Crysta PvP Community</h3>
+              <p class="meta"><span class="role-icon" aria-hidden="true">🪓</span> Tester — <span class="small">~14k members</span></p>
+            </div>
+          </div>
+
+
+        </div>
+
+        <button class="carousel-btn next" aria-label="Next slide">&#10095;</button>
+      </div>
+    </section>
+
+  <section id="projects" class="section fade">
+    <div class="titles">
+      <h1>PROJECTS</h1>
+    </div>
+    <div class="projects-container">
+
+
+      <div class="project-box">
+        <a href="0916teleport.html" target="_blank">
+          <div class="project-box-title">0916TELEPORT</div>
+          <div class="project-features">
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path fill="#00ff85" d="M12 2L1 21h22L12 2zm0 4.8l7.5 13H4.5L12 6.8z"/>
+              </svg>
+              TPA, TPAHere & TPAAll
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path fill="#00ff85" d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm-4 6h2v-2H3v2zm4 0h14v-2H7v2zm-4-12h2V5H3v2zm4 0h14V5H7v2z"/>
+              </svg>
+              Interactive GUI
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path fill="#00ff85" d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+              </svg>
+              Cooldowns & Delays
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path fill="#00ff85" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+              </svg>
+              Messages & Sounds
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path fill="#00ff85" d="M5 3h14v2H5zm0 7h14v2H5zm0 7h14v2H5z"/>
+              </svg>
+              Fully Configurable Settings
+            </div>
+            <div class="more-info">Click for more info...</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="project-box">
+        <a href="0916sellgui.html" target="_blank">
+          <div class="project-box-title">0916SELLGUI</div>
+          <div class="project-features">
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#00ff85">
+                <path d="M12 2L1 21h22L12 2zm0 4.8l7.5 13H4.5L12 6.8z"/>
+              </svg>
+              Sell Everything
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#00ff85">
+                <path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm-4 6h2v-2H3v2zm4 0h14v-2H7v2zm-4-12h2V5H3v2zm4 0h14V5H7v2z"/>
+              </svg>
+              Hand & Inventory Selling
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#00ff85">
+                <path d="M4 20v-8h2v8H4zm4 0v-12h2v12H8zm4 0v-6h2v6h-2zm4 0v-18h2v18h-2z"/>
+              </svg>
+              Global & Player Multipliers
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path fill="#00ff85" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+              </svg>
+              Messages & Sounds
+            </div>
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path fill="#00ff85" d="M5 3h14v2H5zm0 7h14v2H5zm0 7h14v2H5z"/>
+              </svg>
+              Fully Configurable Settings
+            </div>
+            <div class="more-info">Click for more info...</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="project-box">
+        <a href="meowcore.html" target="_blank">
+          <div class="project-box-title">MEOWCORE</div>
+          <div class="project-features">
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#FF91DE">
+                <path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm-4 6h2v-2H3v2zm4 0h14v-2H7v2zm-4-12h2V5H3v2zm4 0h14V5H7v2z"/>
+              </svg>
+              Settings GUI
+            </div>
+
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#91DEFF">
+                <path d="M12 2L1 21h22L12 2zm0 4.8l7.5 13H4.5L12 6.8z"/>
+              </svg>
+              Random Teleport (RTP & Queue)
+            </div>
+
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#FFDE91">
+                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+              </svg>
+              Regear System
+            </div>
+
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#91FFB2">
+                <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+              </svg>
+              TPA / TPAHere
+            </div>
+
+            <div class="feature">
+              <svg class="feature-icon" viewBox="0 0 24 24" fill="#FF91DE">
+                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+              </svg>
+              Basic Commands
+            </div>
+
+            <div class="more-info">Click for more info...</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+    <section id="vouches" class="section fade">
+      <div class="titles"><h1>VOUCHES</h1></div>
+      <div class="vouch-container">
+        <div class="vouch-box">
+          <div class="vouch-header">"I vouch for ItsLuis."</div>
+          <p>"He has made multiple seasons and finished them in no time, he is reliable and finishes his work fast and I can always count on him as he responds very quick."</p>
+          <div class="vouch-footer">
+            <img src="assets/rushar.png" class="vouch-avatar" alt="Rushar profile">
+            <div class="vouch-author">— RusharOnCrack</div>
+          </div>
+        </div>
+
+        <div class="vouch-box">
+          <div class="vouch-header">"Luis is a great developer."</div>
+          <p>"He’s handled several projects for me and always got them done really quickly. He’s reliable, works efficiently, and I know I can count on him anytime. On top of that, he replies super fast, which makes everything so much easier."</p>
+          <div class="vouch-footer">
+            <img src="assets/Z1NQXs.png" class="vouch-avatar" alt="Z1NQXs profile">
+            <div class="vouch-author">— Z1NQXs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section fade">
+      <div class="titles"><h1>CONTACT ME</h1></div>
+
+      <div class="contact-container">
+        <div class="contact-box">
+          <p class="contact-header">Interested in working together? Reach out to me:</p>
+
+          <div class="contact-item" id="contact-discord" role="button" tabindex="0" aria-label="Copy Discord">
+            <div class="contact-left">
+              <div class="contact-icon-circle">
+                <svg class="feature-icon-contact" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.369A19.791 19.791 0 0015.532 3c-.2.35-.43.825-.59 1.194a18.27 18.27 0 00-5.884 0A12.57 12.57 0 008.47 3a19.736 19.736 0 00-4.79 1.37C1.663 9.054 1.023 13.62 1.334 18.139A19.956 19.956 0 007.02 21a14.7 14.7 0 001.18-1.922 12.68 12.68 0 01-1.857-.896c.156-.115.308-.235.456-.356a13.59 13.59 0 0011.402 0c.15.12.302.24.456.356a12.63 12.63 0 01-1.862.9c.43.67.83 1.3 1.18 1.92a19.92 19.92 0 005.685-2.863c.41-5.203-.72-9.72-2.956-13.77zM8.52 15.28c-1.13 0-2.06-1.04-2.06-2.32 0-1.28.91-2.33 2.06-2.33 1.15 0 2.08 1.05 2.06 2.33 0 1.28-.91 2.32-2.06 2.32zm6.96 0c-1.13 0-2.06-1.04-2.06-2.32 0-1.28.91-2.33 2.06-2.33s2.06 1.05 2.06 2.33c0 1.28-.91 2.32-2.06 2.32z" fill="#0a0a0a"/></svg>
+              </div>
+              <div class="contact-texts">
+                <div class="contact-label">Discord</div>
+                <div class="contact-name" id="discord-name">itsluiss</div>
+              </div>
+            </div>
+            <div class="copy-success" id="discord-copied">Click to copy</div>
+          </div>
+
+          <a class="contact-item contact-link" href="https://github.com/ItsLuis0916" target="_blank" rel="noopener noreferrer">
+            <div class="contact-left">
+              <div class="contact-icon-circle">
+                <svg class="feature-icon-contact" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297a12 12 0 00-3.79 23.4c.6.113.82-.258.82-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.796.417-1.304.76-1.603-2.665-.3-5.466-1.37-5.466-6.086 0-1.345.465-2.444 1.235-3.302-.124-.302-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.234a11.5 11.5 0 016 0c2.29-1.556 3.298-1.234 3.298-1.234.653 1.653.242 2.874.12 3.176.77.858 1.233 1.957 1.233 3.302 0 4.727-2.804 5.782-5.476 6.078.43.37.81 1.102.81 2.222v3.293c0 .323.22.694.82.577A12 12 0 0012 .297z" fill="#0a0a0a"/></svg>
+              </div>
+              <div class="contact-texts">
+                <div class="contact-label">GitHub</div>
+                <div class="contact-name">ItsLuis0916</div>
+              </div>
+            </div>
+            <div class="copy-success">Open</div>
+          </a>
+
+          <div class="contact-item" id="contact-email" role="button" tabindex="0" aria-label="Copy email">
+            <div class="contact-left">
+              <div class="contact-icon-circle">
+                <svg class="feature-icon-contact" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 6-8-6h16zm0 12H4V8l8 6 8-6v10z" fill="#0a0a0a"/></svg>
+              </div>
+              <div class="contact-texts">
+                <div class="contact-label">Email</div>
+                <div class="contact-name" id="email-name">Soon...</div>
+              </div>
+            </div>
+            <div class="copy-success" id="email-copied">Click to copy</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
