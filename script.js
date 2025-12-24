@@ -335,4 +335,82 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', () => {
   expSlides = expTrack ? Array.from(expTrack.children) : [];
   centerMiddleExpSlide();
+
+
+const contactForm = document.getElementById("contactForm");
+const statusEl = document.getElementById("status");
+const submitBtn = document.getElementById("contactSubmit");
+const endpoint = "https://contact-form.itsluis1507.workers.dev"; 
+
+if (contactForm) {
+
+  async function setStatus(text, type = "") {
+    if (!statusEl) return;
+    statusEl.textContent = text;
+    statusEl.classList.remove("success", "error");
+    if (type) statusEl.classList.add(type);
+  }
+
+  contactForm.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const name = (document.getElementById("name") || {}).value?.trim() || "";
+    const email = (document.getElementById("email") || {}).value?.trim() || "";
+    const message = (document.getElementById("message") || {}).value?.trim() || "";
+
+    if (!name || !email || !message) {
+      setStatus("Please fill out all fields.", "error");
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute("aria-busy", "true");
+    }
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      const json = await res.json().catch(() => null);
+
+      if (res.ok && json && json.success) {
+        setStatus("Message sent!", "success");
+        contactForm.reset();
+      } else {
+        const msg = (json && json.error) ? json.error : "Error sending message.";
+        setStatus(msg, "error");
+      }
+
+    } catch (err) {
+      setStatus("Connection error. Please try again later.", "error");
+      console.error("Contact form send error:", err);
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-busy");
+      }
+
+      setTimeout(() => {
+        if (statusEl && statusEl.classList.contains("success")) {
+          statusEl.textContent = "";
+          statusEl.classList.remove("success");
+        }
+      }, 3000);
+    }
+  });
+
+  if (submitBtn) {
+    submitBtn.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        submitBtn.click();
+      }
+    });
+  }
+}
 });
