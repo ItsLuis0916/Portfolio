@@ -1,22 +1,30 @@
 
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const elements = document.querySelectorAll(".fade");
+
   function reveal() {
     elements.forEach(el => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) el.classList.add("visible");
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("visible");
+      }
     });
   }
+
   window.addEventListener("scroll", reveal, { passive: true });
   reveal();
 });
 
+
 const canvas = document.getElementById("starfield");
 const ctx = canvas ? canvas.getContext("2d") : null;
+
 let stars = [];
 let STAR_COUNT = 300;
 
-function random(min, max) { return Math.random() * (max - min) + min; }
+function random(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 function calcStarCount() {
   const w = window.innerWidth;
@@ -75,35 +83,31 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 
+initStars();
+animateStars();
+
 let resizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
     initStars();
-    updateCarousel(); 
-    centerMiddleExpSlide(); 
+    if (typeof updateCarousel === "function") updateCarousel();
+    if (typeof centerMiddleExpSlide === "function") centerMiddleExpSlide();
   }, 180);
 });
 
-initStars();
-animateStars();
 
 const spotlight = document.getElementById("cursor-spotlight");
-
 const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 if (spotlight) {
   if (isTouch) {
     spotlight.remove();
   } else {
-    document.addEventListener(
-      "mousemove",
-      (e) => {
-        spotlight.style.top = `${e.clientY}px`;
-        spotlight.style.left = `${e.clientX}px`;
-      },
-      { passive: true }
-    );
+    document.addEventListener("mousemove", (e) => {
+      spotlight.style.top = `${e.clientY}px`;
+      spotlight.style.left = `${e.clientX}px`;
+    }, { passive: true });
   }
 }
 
@@ -115,16 +119,16 @@ const navLinks = document.querySelectorAll('.nav-menu a');
 function closeMobileMenu() {
   if (!navMenu) return;
   navMenu.classList.remove('open');
-  hamburger.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger?.classList.remove('open');
+  hamburger?.setAttribute('aria-expanded', 'false');
   navMenu.setAttribute('aria-hidden', 'true');
 }
 
 function openMobileMenu() {
   if (!navMenu) return;
   navMenu.classList.add('open');
-  hamburger.classList.add('open');
-  hamburger.setAttribute('aria-expanded', 'true');
+  hamburger?.classList.add('open');
+  hamburger?.setAttribute('aria-expanded', 'true');
   navMenu.setAttribute('aria-hidden', 'false');
 }
 
@@ -142,6 +146,7 @@ if (hamburger && navMenu) {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeMobileMenu();
   }, { passive: true });
 }
+
 
 const track = document.querySelector('.carousel-track:not(.experience)');
 let slides = track ? Array.from(track.children) : [];
@@ -253,6 +258,8 @@ window.requestAnimationFrame(() => {
   updateCarousel();
 });
 
+
+
 const discordBox = document.getElementById('contact-discord');
 const discordName = document.getElementById('discord-name');
 const discordMsg = document.getElementById('discord-copied');
@@ -279,6 +286,7 @@ if (emailBox && emailName && emailMsg) {
   emailBox.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') doCopyEmail(); });
 }
 
+
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight || 1;
@@ -286,6 +294,7 @@ window.addEventListener('scroll', () => {
   const bar = document.querySelector('.scroll-progress-bar');
   if (bar) bar.style.width = scrollPercent + '%';
 }, { passive: true });
+
 
 const sections = document.querySelectorAll("section[id]");
 const navLinksDesktop = document.querySelectorAll(".nav-links a");
@@ -305,6 +314,7 @@ function activateNav() {
 }
 window.addEventListener("scroll", activateNav, { passive: true });
 activateNav();
+
 
 const expTrack = document.querySelector('.carousel-track.experience');
 let expSlides = expTrack ? Array.from(expTrack.children) : [];
@@ -335,38 +345,40 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', () => {
   expSlides = expTrack ? Array.from(expTrack.children) : [];
   centerMiddleExpSlide();
+});
 
 
-const contactForm = document.getElementById("contactForm");
-const statusEl = document.getElementById("status");
-const submitBtn = document.getElementById("contactSubmit");
-const endpoint = "https://contact-form.itsluis1507.workers.dev"; 
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM ready");
 
-if (contactForm) {
-
-  async function setStatus(text, type = "") {
+  function setStatus(text, type = "") {
+    const statusEl = document.getElementById("status");
     if (!statusEl) return;
     statusEl.textContent = text;
     statusEl.classList.remove("success", "error");
     if (type) statusEl.classList.add(type);
   }
 
-  contactForm.addEventListener("submit", async function(e) {
-    e.preventDefault();
+  const submitBtn = document.getElementById("contactSubmit");
+  const endpoint = "https://contact-form.itsluis1507.workers.dev";
 
-    const name = (document.getElementById("name") || {}).value?.trim() || "";
-    const email = (document.getElementById("email") || {}).value?.trim() || "";
-    const message = (document.getElementById("message") || {}).value?.trim() || "";
+  if (!submitBtn) {
+    console.warn("contactSubmit button not found");
+    return;
+  }
+
+  submitBtn.addEventListener("click", async () => {
+    const name = document.getElementById("name")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const message = document.getElementById("message")?.value.trim();
 
     if (!name || !email || !message) {
       setStatus("Please fill out all fields.", "error");
       return;
     }
 
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.setAttribute("aria-busy", "true");
-    }
+    submitBtn.disabled = true;
+    submitBtn.setAttribute("aria-busy", "true");
     setStatus("Sending...");
 
     try {
@@ -378,39 +390,18 @@ if (contactForm) {
 
       const json = await res.json().catch(() => null);
 
-      if (res.ok && json && json.success) {
+      if (res.ok && json?.success) {
         setStatus("Message sent!", "success");
-        contactForm.reset();
+        document.getElementById("contactForm")?.reset();
       } else {
-        const msg = (json && json.error) ? json.error : "Error sending message.";
-        setStatus(msg, "error");
+        setStatus(json?.error || "Error sending message.", "error");
       }
-
     } catch (err) {
-      setStatus("Connection error. Please try again later.", "error");
       console.error("Contact form send error:", err);
+      setStatus("Connection error.", "error");
     } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.removeAttribute("aria-busy");
-      }
-
-      setTimeout(() => {
-        if (statusEl && statusEl.classList.contains("success")) {
-          statusEl.textContent = "";
-          statusEl.classList.remove("success");
-        }
-      }, 3000);
+      submitBtn.disabled = false;
+      submitBtn.removeAttribute("aria-busy");
     }
   });
-
-  if (submitBtn) {
-    submitBtn.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        submitBtn.click();
-      }
-    });
-  }
-}
 });

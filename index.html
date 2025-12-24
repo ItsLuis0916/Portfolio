@@ -318,7 +318,7 @@
                   <div class="label">Discord</div>
                   <div class="sub" id="discord-name-short">itsluiss</div> 
                 </div>
-              </button>
+              </a>
 
               <a class="action-btn" href="https://github.com/ItsLuis0916" target="_blank" rel="noopener noreferrer">
                 <div class="action-icon">
@@ -346,7 +346,7 @@
               </button>
             </div>
 
-            <form id="contactForm" class="contact-form" action="#" method="POST" novalidate>
+            <form id="contactForm" class="contact-form" onsubmit="return false;" method="POST" novalidate>
               <div class="input-container">
                 <label for="name" class="input-label">Name</label>
                 <input type="text" id="name" name="name" class="input-box" placeholder="Your Name" required autocomplete="name">
@@ -365,7 +365,7 @@
 
               <div style="display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center; margin-top:8px;">
                 <div id="status" role="status" aria-live="polite" style="min-width:160px; text-align:center;"></div>
-                <button type="submit" class="submit-btn" id="contactSubmit" aria-live="polite">Submit</button>
+                <button type="button" class="submit-btn" id="contactSubmit" aria-live="polite">Submit</button>
               </div>
             </form>
 
